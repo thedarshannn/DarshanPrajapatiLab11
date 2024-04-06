@@ -8,13 +8,14 @@
         android:id="@+id/DarTabLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:tabSelectedTextColor="@color/black"
+        app:tabSelectedTextColor="@color/red"
         app:tabSelectedTextAppearance="@style/TabLayoutTextStyle"
-        app:tabIndicatorColor="@color/tabIndicatorColor"
+        app:tabIndicatorColor="@color/red"
         app:tabIndicatorFullWidth="true"
         style="@style/TabLayoutTextStyle"
         app:tabBackground="@drawable/tab_background_selector"
-        android:layout_alignParentTop="true"/>
+        android:layout_alignParentTop="true"
+        app:tabIconTint="@drawable/tab_icon_color" />
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/DarViewPager"
