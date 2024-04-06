@@ -1,13 +1,20 @@
 package darshan.prajapati.n01584247.dp;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager2.widget.ViewPager2;
+
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.view.Menu;
+
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class PrajapatiActivity11 extends AppCompatActivity {
 
@@ -15,6 +22,10 @@ public class PrajapatiActivity11 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        ActionBar actionBar = getSupportActionBar();
+        ColorDrawable colorDrawable = new ColorDrawable(Color.parseColor("#3F51B5"));
+        Objects.requireNonNull(actionBar).setBackgroundDrawable(colorDrawable);
 
         ArrayList<Fragment> fragmentList = new ArrayList<>();
         fragmentList.add(new Da11rshanFragment());
@@ -42,5 +53,11 @@ public class PrajapatiActivity11 extends AppCompatActivity {
                     }
                 }
         ).attach();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.toolbar_menu, menu);
+        return true;
     }
 }
