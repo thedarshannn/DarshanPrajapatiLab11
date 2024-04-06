@@ -65,7 +65,6 @@ public class PrajapatiActivity11 extends AppCompatActivity {
     }
 
     // Add the following method to handle the toolbar menu item click event
-    // commit msg - "Added toolbar menu item click event handler"
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
