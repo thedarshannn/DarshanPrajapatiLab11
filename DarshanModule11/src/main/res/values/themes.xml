@@ -5,5 +5,17 @@
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
     </style>
 
+    <style name="AppTheme" parent="Theme.AppCompat.Light">
+        <item name="colorPrimary" type="color">@color/colorPrimary</item>
+        <item name="colorPrimaryDark" type="color">@color/colorPrimaryDark</item>
+        <item name="colorAccent" type="color">@color/colorAccent</item>
+    </style>
+
+    <style name="Theme.TabsLayout" parent="Base.Theme.DarshanLab11" />
+
+    <style name="TabLayoutTextStyle" parent="Base.Theme.DarshanLab11">
+        <item name="android:textStyle">bold</item>
+    </style>
+
     <style name="Theme.DarshanLab11" parent="Base.Theme.DarshanLab11" />
 </resources>
