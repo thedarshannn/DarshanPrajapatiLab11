@@ -3,7 +3,6 @@ package darshan.prajapati.n01584247.dp;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -18,8 +17,11 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.regex.Matcher;
@@ -60,6 +62,7 @@ public class Da11rshanFragment extends Fragment {
         // Initializing the array list
         courseArrayList = new ArrayList<>();
         buildRecyclerView();
+        readDataFromDatabase();
 
             addBtn.setOnClickListener(e ->{
                 String courseName = courseNameET.getText().toString().trim();
@@ -126,6 +129,36 @@ public class Da11rshanFragment extends Fragment {
             // If the value is not given, displaying a toast
             Toast.makeText(getActivity(), getString(R.string.addCourse_failure_msg), Toast.LENGTH_LONG).show();
         }
+    }
+
+    // Read data from the database
+    private void readDataFromDatabase(){
+        // Read from the database
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                // Clear the list before adding new courses
+                courseArrayList.clear();
+
+                // This method is called once with the initial value and again
+                // whenever data at this location is updated.
+                for (DataSnapshot courseSnapshot : dataSnapshot.getChildren()) {
+                    // Getting the values from the database
+                    Course course = courseSnapshot.getValue(Course.class);
+                    // Add data to recycle view
+                    courseArrayList.add(course);
+                }
+
+                // Notify the adapter that the data set has changed
+                adapter.notifyDataSetChanged();
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
     }
 
     private void buildRecyclerView() {
