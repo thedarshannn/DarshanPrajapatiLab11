@@ -84,10 +84,6 @@ public class Da11rshanFragment extends Fragment {
         return matcher.matches();
     }
 
-    // commit msg : Added the addCourse method to save the course data to the Firebase Realtime Database
-    // short one liner : Added the addCourse method to save the course data to the Firebase Realtime Database
-    // much short one liner : Added addCourse method to save course data to Firebase Realtime Database
-    // much short one liner : Added addCourse method to save course data to Firebase
     private void addCourse(){
 
         // Getting values to save
