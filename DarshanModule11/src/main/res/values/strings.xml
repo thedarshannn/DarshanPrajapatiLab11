@@ -11,4 +11,6 @@
     <string name="err_invalid_course">Invalid course name</string>
     <string name="err_null_course_name">Course name is required</string>
     <string name="err_null_course_desc">Course description is required</string>
+    <string name="addCourse_success_msg">Data has been saved!</string>
+    <string name="addCourse_failure_msg">Please enter the data!</string>
 </resources>
