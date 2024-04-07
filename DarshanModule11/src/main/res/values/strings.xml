@@ -16,4 +16,6 @@
     <string name="course_name">Course Name</string>
     <string name="course_description">Course Description</string>
     <string name="clear_field">" "</string>
+    <string name="delete_msg">Data deleted successfully!</string>
+    <string name="no_data_to_delete">No data to delete!</string>
 </resources>

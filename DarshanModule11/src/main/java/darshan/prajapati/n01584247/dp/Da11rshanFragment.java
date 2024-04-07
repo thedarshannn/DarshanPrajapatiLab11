@@ -31,7 +31,7 @@ public class Da11rshanFragment extends Fragment {
 
 
     private DatabaseReference myRef;
-    private Button addBtn;
+    private Button addBtn, deleteBtn;
     private EditText courseNameET, courseDescET;
     private CourseAdapter adapter;
     private RecyclerView courseRV;
@@ -58,6 +58,7 @@ public class Da11rshanFragment extends Fragment {
         addBtn = view.findViewById(R.id.DarAddBtn);
         courseNameET = view.findViewById(R.id.DarCourseNameET);
         courseDescET = view.findViewById(R.id.DarDescriptionET);
+        deleteBtn = view.findViewById(R.id.DarDeleteBtn);
         courseRV = view.findViewById(R.id.DarRV);
         // Initializing the array list
         courseArrayList = new ArrayList<>();
@@ -84,6 +85,18 @@ public class Da11rshanFragment extends Fragment {
                     }
                 }
             });
+
+        deleteBtn.setOnClickListener(e ->{
+            if (!courseArrayList.isEmpty()) {
+                courseArrayList.clear();
+                adapter.notifyDataSetChanged();
+                // delete every record from the firebase
+                myRef.removeValue();
+                Toast.makeText(getActivity(), getString(R.string.delete_msg), Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(getActivity(), getString(R.string.no_data_to_delete), Toast.LENGTH_SHORT).show();
+            }
+        });
 
         // Inflate the layout for this fragment
         return view;
@@ -176,5 +189,11 @@ public class Da11rshanFragment extends Fragment {
         // Clear the EditText fields after adding
         courseNameET.setText(R.string.clear_field);
         courseDescET.setText(R.string.clear_field);
+    }
+
+    // Delete a specified course from the database
+    private void deleteCourse(String courseName){
+        // Deleting the course from the database
+        myRef.child(courseName).removeValue();
     }
 }
