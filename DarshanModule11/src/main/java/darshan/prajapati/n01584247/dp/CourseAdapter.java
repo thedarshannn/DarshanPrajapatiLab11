@@ -44,6 +44,19 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.ViewHolder
         return courseModalArrayList.size();
     }
 
+    // Interface for the long click listener
+    public interface OnItemLongClickListener {
+        void onItemLongClick(int position);
+    }
+
+    // Variable for the long click listener
+    private static OnItemLongClickListener listener;
+
+    // Method to set the long click listener
+    public void setOnItemLongClickListener(OnItemLongClickListener listener) {
+        CourseAdapter.listener = listener;
+    }
+
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
         // creating variables for our views.
@@ -55,6 +68,25 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.ViewHolder
             // initializing our views with their ids.
             courseNameTV = itemView.findViewById(R.id.darTVCourseName);
             courseDescTV = itemView.findViewById(R.id.darTVCourseDescription);
+
+            // Adding a long click listener to the item view
+            itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    // Get the position of the item clicked
+                    int position = getAdapterPosition();
+
+                    // Check if position is valid
+                    if (position != RecyclerView.NO_POSITION) {
+                        // Trigger the listener with the position of the long clicked item
+                        if (listener != null) {
+                            listener.onItemLongClick(position);
+                            return true;
+                        }
+                    }
+                    return false;
+                }
+            });
         }
     }
 }

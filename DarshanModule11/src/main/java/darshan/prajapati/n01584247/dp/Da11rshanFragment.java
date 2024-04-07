@@ -98,6 +98,21 @@ public class Da11rshanFragment extends Fragment {
             }
         });
 
+        adapter.setOnItemLongClickListener(new CourseAdapter.OnItemLongClickListener() {
+            @Override
+            public void onItemLongClick(int position) {
+                // Get the course to be deleted
+                Course course = courseArrayList.get(position);
+
+                // Delete the course from the database
+                deleteCourse(course.getCourseName());
+
+                // Remove the course from the list and notify the adapter
+                courseArrayList.remove(position);
+                adapter.notifyItemRemoved(position);
+            }
+        });
+
         // Inflate the layout for this fragment
         return view;
     }
