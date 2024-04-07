@@ -17,6 +17,12 @@ public class Course {
         this.courseDescription = courseDescription;
     }
 
+    // Constructor for recycle view.
+    public Course(String courseName, String courseDescription) {
+        this.courseName = courseName;
+        this.courseDescription = courseDescription;
+    }
+
     public String getCourseId() {
         return courseId;
     }

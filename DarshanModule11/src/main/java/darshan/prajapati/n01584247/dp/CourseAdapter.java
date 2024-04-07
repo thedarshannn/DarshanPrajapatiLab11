@@ -19,7 +19,7 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.ViewHolder
 
     // creating a constructor for our variables.
     public CourseAdapter(ArrayList<Course> courseModalArrayList, Context context) {
-        this.courseModalArrayList = courseModalArrayList;
+        this.courseModalArrayList = courseModalArrayList != null ? courseModalArrayList : new ArrayList<>();
     }
 
     @NonNull

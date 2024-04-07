@@ -3,7 +3,10 @@ package darshan.prajapati.n01584247.dp;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -18,6 +21,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -27,6 +31,9 @@ public class Da11rshanFragment extends Fragment {
     private DatabaseReference myRef;
     private Button addBtn;
     private EditText courseNameET, courseDescET;
+    private CourseAdapter adapter;
+    private RecyclerView courseRV;
+    private ArrayList<Course> courseArrayList;
 
     public Da11rshanFragment() {
         // Required empty public constructor
@@ -49,6 +56,10 @@ public class Da11rshanFragment extends Fragment {
         addBtn = view.findViewById(R.id.DarAddBtn);
         courseNameET = view.findViewById(R.id.DarCourseNameET);
         courseDescET = view.findViewById(R.id.DarDescriptionET);
+        courseRV = view.findViewById(R.id.DarRV);
+        // Initializing the array list
+        courseArrayList = new ArrayList<>();
+        buildRecyclerView();
 
             addBtn.setOnClickListener(e ->{
                 String courseName = courseNameET.getText().toString().trim();
@@ -57,6 +68,7 @@ public class Da11rshanFragment extends Fragment {
                 if(!courseName.isEmpty() && !courseDesc.isEmpty()){
                     if(isValidCourseName(courseName)){
                         addCourse();
+                        addDataToRecycleView();
                     }else {
                         courseNameET.setError(getString(R.string.err_invalid_course));
                     }
@@ -114,5 +126,22 @@ public class Da11rshanFragment extends Fragment {
             // If the value is not given, displaying a toast
             Toast.makeText(getActivity(), getString(R.string.addCourse_failure_msg), Toast.LENGTH_LONG).show();
         }
+    }
+
+    private void buildRecyclerView() {
+        adapter = new CourseAdapter(courseArrayList, getActivity());
+        LinearLayoutManager manager = new LinearLayoutManager(getActivity());
+        courseRV.setHasFixedSize(true);
+        courseRV.setLayoutManager(manager);
+        courseRV.setAdapter(adapter);
+    }
+
+    private void addDataToRecycleView(){
+        courseArrayList.add(new Course(courseNameET.getText().toString(), courseDescET.getText().toString()));
+        adapter.notifyItemInserted(courseArrayList.size());
+
+        // Clear the EditText fields after adding
+        courseNameET.setText(R.string.clear_field);
+        courseDescET.setText(R.string.clear_field);
     }
 }
