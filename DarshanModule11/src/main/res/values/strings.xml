@@ -20,4 +20,5 @@
     <string name="no_data_to_delete">No data to delete!</string>
     <string name="map_location">Cambay</string>
     <string name="map_snippet">Cambay Darshan</string>
+    <string name="dismiss">Dismiss</string>
 </resources>
