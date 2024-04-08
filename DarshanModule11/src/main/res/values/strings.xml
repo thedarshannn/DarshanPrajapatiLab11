@@ -18,4 +18,6 @@
     <string name="clear_field">" "</string>
     <string name="delete_msg">Data deleted successfully!</string>
     <string name="no_data_to_delete">No data to delete!</string>
+    <string name="map_location">Cambay</string>
+    <string name="map_snippet">Cambay Darshan</string>
 </resources>
